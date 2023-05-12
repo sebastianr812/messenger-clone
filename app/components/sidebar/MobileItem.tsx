@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 interface MobileItemProps {
     href: string;
-    active: boolean;
+    active?: boolean;
     icon: any;
     onClick?: () => void;
 }
