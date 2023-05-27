@@ -2,12 +2,12 @@
 
 import { Conversation, User } from ".prisma/client";
 import Avatar from "@/app/components/Avatar";
-import Modal from "@/app/components/Modal";
 import useOtherUser from "@/app/hooks/useOtherUser";
 import { Dialog, Transition } from "@headlessui/react";
 import { format } from "date-fns";
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { IoClose, IoTrash } from 'react-icons/io5';
+import ConfirmModal from "./ConfirmModal";
 
 interface ProfileDrawerProps {
     isOpen: boolean;
@@ -22,6 +22,8 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
     data,
     onClose
 }) => {
+
+    const [confirmOpen, setConfirmOpen] = useState(false);
 
     const otherUser = useOtherUser(data);
 
@@ -43,7 +45,8 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
 
     return (
         <>
-            <Modal isOpen onClose={() => { }} />
+            <ConfirmModal isOpen={confirmOpen} onClose={() => setConfirmOpen(false)} />
+
             <Transition.Root show={isOpen} as={Fragment}>
                 <Dialog as='div' className='relative z-50' onClose={onClose}>
                     <Transition.Child
@@ -92,7 +95,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                                                         {statusText}
                                                     </div>
                                                     <div className="flex gap-10 my-8">
-                                                        <div onClick={() => { }} className="flex flex-col items-center gap-3 cursor-pointer hover:opacity-75">
+                                                        <div onClick={() => setConfirmOpen(true)} className="flex flex-col items-center gap-3 cursor-pointer hover:opacity-75">
                                                             <div className="flex items-center justify-center w-10 h-10 rounded-full bg-neutral-100">
                                                                 <IoTrash size={20} />
                                                             </div>

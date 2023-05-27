@@ -8,7 +8,7 @@ interface ButtonProps {
     onClick?: () => void;
     secondary?: boolean;
     danger?: boolean;
-    disbaled?: boolean;
+    disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -18,13 +18,13 @@ const Button: React.FC<ButtonProps> = ({
     onClick,
     secondary,
     danger,
-    disbaled
+    disabled
 }) => {
     return (
         <button
             onClick={onClick}
             type={type}
-            disabled={disbaled}
+            disabled={disabled}
             className={clsx(`
                 flex
                 justify-center
@@ -37,7 +37,7 @@ const Button: React.FC<ButtonProps> = ({
                 focus-visible:outline-2
                 focus-visible:outline-offset-2            
             `,
-                disbaled && "opacity-50 cursor-default",
+                disabled && "opacity-50 cursor-default",
                 fullWidth && "w-full",
                 secondary ? "text-gray-900" : "text-white",
                 danger && "bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600",
