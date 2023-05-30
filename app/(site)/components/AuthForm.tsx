@@ -120,7 +120,7 @@ const AuthForm = () => {
                     <Input disabled={isLoading} id="password" type="password" label="Password" register={register} errors={errors} />
                     <div>
                         <Button
-                            disbaled={isLoading}
+                            disabled={isLoading}
                             fullWidth
                             type="submit"
                         >
